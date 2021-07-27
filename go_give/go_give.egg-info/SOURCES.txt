@@ -1,0 +1,8 @@
+README.md
+setup.py
+go_give.egg-info/PKG-INFO
+go_give.egg-info/SOURCES.txt
+go_give.egg-info/dependency_links.txt
+go_give.egg-info/not-zip-safe
+go_give.egg-info/requires.txt
+go_give.egg-info/top_level.txt

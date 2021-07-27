@@ -1,0 +1,4 @@
+flask
+seleniumbase
+faker
+flask_sqlalchemy
