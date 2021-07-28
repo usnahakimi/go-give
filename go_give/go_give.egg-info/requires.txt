@@ -2,3 +2,4 @@ flask
 seleniumbase
 faker
 flask_sqlalchemy
+flask_login

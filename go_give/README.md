@@ -42,7 +42,7 @@
 * Install chromedriver for feature testing sbase install chromedriver
 * To create the database open python interpreter and put in following commands:
     * from go_give import db, create_app
-    * db.create_all(app=create+app())
+    * db.create_all(app=create_app())
 * Run the app
     * export FLASK_APP=go_give
     * flask run
