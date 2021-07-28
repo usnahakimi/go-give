@@ -4,3 +4,7 @@
   href="{{ url_for('static', filename='css/style.css') }}"
 />
 {% endblock %}
+
+{% block content %}
+<h1>Welcome, {{ name }}!</h1>
+{% endblock %}
