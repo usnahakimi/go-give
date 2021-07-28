@@ -11,3 +11,9 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.firstname)
+
+@main.route('/create_lisiting')
+@login_required
+def create_listing():
+    return render_template('listings/create.html')
+
