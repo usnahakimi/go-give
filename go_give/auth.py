@@ -19,7 +19,7 @@ def register():
         user = User.query.filter_by(email=email).first()
 
         if user:
-            print("User already exists!")
+            return redirect(url_for('auth.register'))
 
         new_user = User(email=email, firstname=firstname, lastname=lastname, 
         location=location, username=username, password=generate_password_hash(password, method='sha256'))
