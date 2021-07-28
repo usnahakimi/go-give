@@ -44,7 +44,7 @@
     * from go_give import db, create_app
     * db.create_all(app=create+app())
 * Run the app
-    * export FLASK_APP=acebook
+    * export FLASK_APP=go_give
     * flask run
 ```
 ```
