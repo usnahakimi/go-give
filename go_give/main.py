@@ -13,7 +13,9 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.firstname)
+    user = User.query.filter_by(email=current_user.email).first_or_404()
+    listings = user.listings
+    return render_template('profile.html', name=current_user.firstname, user=user, listings=listings)
 
 @main.route('/create_listing')
 @login_required
@@ -35,6 +37,12 @@ def create_listing_post():
 @login_required
 def listings():
     listings = Listings.query.all()
-    # user = User.query.filter_by(email=current_user.email).first_or_404()
-    # listings = user.listings
     return render_template('listings/index.html', listings=listings)
+
+@main.route("/listings/<int:listings_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete_listing(listings_id):
+    listing = Listings.query.get_or_404(listings_id)
+    db.session.delete(listing)
+    db.session.commit()
+    return redirect(url_for('main.listings'))
