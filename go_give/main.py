@@ -34,6 +34,7 @@ def create_listing_post():
 @main.route('/all')
 @login_required
 def listings():
-    user = User.query.filter_by(email=current_user.email).first_or_404()
-    listings = user.listings
-    return render_template('listings/index.html', listings=listings, user=user)
+    listings = Listings.query.all()
+    # user = User.query.filter_by(email=current_user.email).first_or_404()
+    # listings = user.listings
+    return render_template('listings/index.html', listings=listings)

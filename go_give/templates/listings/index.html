@@ -5,7 +5,7 @@
 />
 {% endblock %} {% block content %}
 <h1>
-  Welcome, {{ user.firstname }}!
+
 </h1>
 <div>
     <table class="table table-hover" style="width: 700px;">
@@ -17,7 +17,7 @@
         </tr>
         </thead>
         <tbody>
-            {% for listings in listings%}
+            {% for listings in listings %}
             <tr>
                 <td>{{ listings.name }}</td>
                 <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
