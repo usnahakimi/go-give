@@ -3,3 +3,4 @@ seleniumbase
 faker
 flask_sqlalchemy
 flask_login
+boto3
