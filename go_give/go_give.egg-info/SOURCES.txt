@@ -4,7 +4,8 @@ Pipfile.lock
 README.md
 __init__.py
 auth.py
-db.sqlite
+config.py
+helpers.py
 main.py
 models.py
 setup.py

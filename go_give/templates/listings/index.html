@@ -15,18 +15,18 @@
         </tr>
         </thead>
         <tbody>
-            {% for listing in listings%}
+            {% for listings in listings%}
             <tr>
-                <td>{{ listing.name }}</td>
-                <td>{{ listing.date_posted.strftime('%m/%d/%Y') }}</td>
-                <td>{{ listing.description }}</td>
-                <td><img src="{{ listing.image_url}}"/></td>
+                <td>{{ listings.name }}</td>
+                <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
+                <td>{{ listings.description }}</td>
+                <td><img src="{{ listings.image_url}}"/></td>
                     <a href="#" class="btn btn-outline-primary" role="button">
                         Edit
                     </a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-outline-danger" role="button">
+                    <a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">
                         Delete
                     </a>
                 </td>

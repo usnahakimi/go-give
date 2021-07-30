@@ -42,10 +42,10 @@ def listings():
     listings = Listings.query.all()
     return render_template('listings/index.html', listings=listings)
 
-# @main.route("/listings/<int:listings_id>/delete", methods=['GET', 'POST'])
-# @login_required
-# def delete_listing(listings_id):
-#     listing = Listings.query.get_or_404(listings_id)
-#     db.session.delete(listing)
-#     db.session.commit()
-#     return redirect(url_for('main.listings'))
+@main.route("/listings/<int:listings_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete_listing(listings_id):
+    listings = Listings.query.get_or_404(listings_id)
+    db.session.delete(listings)
+    db.session.commit()
+    return redirect(url_for('main.listings'))
