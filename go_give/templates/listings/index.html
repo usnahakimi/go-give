@@ -3,7 +3,8 @@
   rel="stylesheet"
   href="{{ url_for('static', filename= 'ccs/style.css') }}"
 />
-{% endblock %} {% block content %}
+{% endblock %} 
+{% block content %}
 <div>
     <table class="table table-hover" style="width: 700px;">
         <thead class="thead-dark">
@@ -14,23 +15,24 @@
         </tr>
         </thead>
         <tbody>
-            {% for listings in listings %}
-            <tr>
-                <td>{{ listings.name }}</td>
-                <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
-                <td>{{ listings.description }}</td>
-                    <a href="#" class="btn btn-outline-primary" role="button">
-                        Edit
-                    </a>
-                </td>
-                <td>
-                    <a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">
-                        Delete
-                    </a>
-                </td>
-            </tr>
+            {% for listing in listings%}
+                <tr>
+                    <td>{{ listing.name }}</td>
+                    <td>{{ listing.date_posted.strftime('%m/%d/%Y') }}</td>
+                    <td>{{ listing.description }}</td>
+                    <td><img src="{{ listing.image_url}}"/></td>
+                        <a href="#" class="btn btn-outline-primary" role="button">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
             {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
