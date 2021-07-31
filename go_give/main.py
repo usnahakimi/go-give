@@ -9,8 +9,9 @@ from datetime import datetime
 main = Blueprint('main', __name__)
 
 @main.route('/')
-def index():
-    return render_template('index.html')
+def listings():
+    listings = Listings.query.all()
+    return render_template('index.html', listings=listings)
 
 @main.route('/profile')
 @login_required
@@ -29,19 +30,20 @@ def create_listing():
 def create_listing_post(): 
     name = request.form.get('name')
     description = request.form.get('description')
+    location = request.form.get('location')
     email = request.form.get('email')
     file = request.files['file']
     image_url = upload_file_to_s3(file, S3_BUCKET )
-    listings = Listings(name=name, description=description, email=email, author=current_user, image_url=image_url )
+    listings = Listings(name=name, description=description, location=location, email=email, author=current_user, image_url=image_url )
     db.session.add(listings)
     db.session.commit()
     return redirect(url_for('main.listings'))
 
-@main.route('/all')
-@login_required
-def listings():
-    listings = Listings.query.all()
-    return render_template('listings/index.html', listings=listings)
+# @main.route('/all')
+# @login_required
+# def listings():
+#     listings = Listings.query.all()
+#     return render_template('index.html', listings=listings)
 
 @main.route("/listings/<int:listings_id>/delete", methods=['GET', 'POST'])
 @login_required
