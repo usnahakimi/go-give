@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
+from hashlib import md5
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,7 +11,13 @@ class User(db.Model, UserMixin):
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
     location = db.Column(db.String(100))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     listings = db.relationship('Listings', backref='author', lazy=True)
+
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
 
 class Listings(db.Model):
     id = db.Column(db.Integer, primary_key=True)

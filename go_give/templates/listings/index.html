@@ -10,8 +10,11 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">Listed Items</th>
-            <th scope="col">Email</th>
+            <th scope="col">Date</th>
             <th scope="col">Description</th>
+            <th scope="col">Location</th>
+            <th scope="col">Email</th>
+            <th scope="col">Image</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +23,8 @@
                 <td>{{ listings.name }}</td>
                 <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
                 <td>{{ listings.description }}</td>
+                <td>{{ listings.location }}</td>
+                <td>{{ listings.email }}</td>
                 <td><img src="{{ listings.image_url}}"/></td>
                     <a href="#" class="btn btn-outline-primary" role="button">
                         Edit
