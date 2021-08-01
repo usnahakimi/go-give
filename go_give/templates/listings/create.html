@@ -11,6 +11,8 @@
     <input name="name" id="name" value="{{ request.form['name'] }}" required>
     <label for="description">Description</label>
     <textarea name="description" id="description">{{ request.form['description'] }}</textarea>
+    <label for="location">Location</label>
+    <input name="location" id="location" value="{{ request.form['location'] }}" required>
     <label for="email">Contact Email</label>
     <input name="email" id="email" value="{{ request.form['email'] }}" required>
     <input type="file" name="file" class="form-control" autocomplete="off" required>
