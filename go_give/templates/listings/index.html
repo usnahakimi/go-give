@@ -14,14 +14,19 @@
             <th scope="col">Description</th>
         </tr>
         </thead>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/searchkeyword" method="post">
+            <input type="search" name="search-keyword" class="form-control form-control-dark" placeholder="Search for posts by keyword" aria-label="Search">
+            <button class="btn btn-warning" type="submit">Search</button>
+          </form>
         <tbody>
-            {% for listings in listings%}
+            {% for listings in listings %}
             <tr>
                 <td>{{ listings.name }}</td>
                 <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
                 <td>{{ listings.description }}</td>
                 <td><img src="{{ listings.image_url}}"/></td>
-                    <a href="#" class="btn btn-outline-primary" role="button">
+                <td>
+                    <a href="{{ url_for('main.update_listings', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">
                         Edit
                     </a>
                 </td>

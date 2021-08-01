@@ -22,7 +22,7 @@
               <td>{{ listings.name }}</td>
               <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
               <td>{{ listings.description }}</td>
-                  <a href="#" class="btn btn-outline-primary" role="button">
+                  <a href="{{ url_for('main.update', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">
                       Edit
                   </a>
               </td>

@@ -16,3 +16,4 @@ build/
 *.egg-info
 
 .DS_Store
+go_give/__pycache__/*

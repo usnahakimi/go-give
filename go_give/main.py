@@ -23,6 +23,7 @@ def profile():
 def create_listing():
     return render_template('listings/create.html')
 
+ 
 @main.route('/create_listing', methods=['POST'])
 @login_required
 def create_listing_post(): 
@@ -33,8 +34,38 @@ def create_listing_post():
     image_url = upload_file_to_s3(file, S3_BUCKET )
     listings = Listings(name=name, description=description, email=email, author=current_user, image_url=image_url )
     db.session.add(listings)
+    db.session.commit() 
+    return redirect(url_for('main.listings'))   
+
+
+@main.route('/update/<int:listings_id>')
+@login_required
+def update_listing(listings_id): 
+     listings = Listings.query.get_or_404(listings_id)
+     return render_template('listings/update.html', listings = listings)
+
+@main.route('/update/<int:listings_id>', methods=['POST'])
+@login_required
+def update_listings(listings_id):
+    listings = Listings.query.get_or_404(listings_id)
+    listings.name = request.form.get('name')
+    listings.description = request.form.get('description')
+    listings.email = request.form.get('email')
+
+    if request.files['file']:
+        image_url = upload_file_to_s3(request.files['file'], S3_BUCKET )
+        listings.image_url = image_url
+
     db.session.commit()
-    return redirect(url_for('main.listings'))
+ 
+    return redirect(url_for('main.listings'))  
+
+@main.route("/searchkeyword", methods=["POST"])
+def search_by_keyword():
+     keyword = request.form["search-keyword"]
+     listings = db.session.query(Listings).filter(Listings.description.ilike(f"%{keyword}%")).all() 
+     return render_template('listings/index.html', listings=listings)
+
 
 @main.route('/all')
 @login_required
