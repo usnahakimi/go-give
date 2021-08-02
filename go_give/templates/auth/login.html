@@ -6,22 +6,24 @@
 {% endblock %}
 
 {% block content %}
-  <body class="text-center">
-    <main class="form-signin">
-      <form method="post">
-        <img class="mb-4" src="{{ url_for('static', filename='images/random-logo.ico') }}" alt="" width="300" height="200">
-        <h1 class="h3 mb-3 fw-normal">Log in</h1>
-        <div class="form-floating">
-          <input type="email" name="email" class="form-control" id="email" placeholder="Email">
-          <label for="email">Email</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
-        </div>
-        <button class="btn btn-warning" type="submit">Log in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; Go Give</p>
-      </form>
-    </main>
-  </body>
+  <div class="container-fluid">
+    <body class="text-center">
+      <main class="form-signin">
+        <form method="post">
+          <img class="mb-4" src="{{ url_for('static', filename='images/random-logo.png') }}" alt="" width="200" height="200">
+          <h1 class="h3 mb-3 fw-normal">Log in</h1>
+          <div class="form-floating">
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+            <label for="email">Email</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <button class="btn btn-warning" type="submit">Log in</button>
+          <p class="mt-5 mb-3 text-muted">&copy; Go Give</p>
+        </form>
+      </main>
+    </body>
+  </div>
 {% endblock %}

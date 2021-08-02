@@ -6,49 +6,37 @@
 {% endblock %}
 
 {% block content %}
-<table>
-  <tr valign="top">
-    <td>Welcome, {{ name }}!</td>
-    <td><img src="{{ user.avatar(128) }}"></td>
-  </tr>
-</table>
-<hr>
-<div>
-  <table class="table table-hover" style="width: 700px;">
-      <thead class="thead-dark">
-      <tr>
-          <th scope="col">User</th>
-          <th scope="col">Name</th>
-          <th scope="col">Date</th>
-          <th scope="col">Description</th>
-          <th scope="col">Location</th>
-          <th scope="col">Email</th>
-          <th scope="col">Image</th>
-      </tr>
-      </thead>
-      <tbody>
-          {% for listings in listings %}
-          <tr>
-              <td><img src="{{ listings.author.avatar(36) }}"></td>
-              <td>{{ listings.name }}</td>
-              <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
-              <td>{{ listings.description }}</td>       
-              <td>{{ listings.location }}</td>
-              <td>{{ listings.email }}</td>
-              <td><img src="{{ listings.image_url}}"/></td>
-              <td>
-                  <a href="{{ url_for('main.update_listing', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">
-                      Edit
-                  </a>
-              </td>
-              <td>
-                <a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">
-                    Delete
-                </a>
-            </td>
-          </tr>
-          {% endfor %}
-      </tbody>
-  </table>
-</div>
+
+  <header>
+    <h4>Welcome, {{ name }}!</h4>
+    <img src="{{ user.avatar(128) }}">
+  </header>
+
+  <section class="py-5">
+    {% for listings in listings%}
+      <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div class="col sm-6">
+            <div class="card">
+              <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
+                <div class="card-body">
+                  <div class="text-center">
+                    <h3 class="fw-bolder">{{ listings.name }}</h3>
+                    <h5>{{ listings.description }}</h5>
+                    <h6>{{ listings.location }}</h6>
+                    <h6>{{ listings.email }}</h6>
+                    <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
+                    <img src="{{ listings.author.avatar(36) }}">
+                  </div>
+                </div>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a href="#" class="btn btn-outline-primary" role="button">Edit</a></div>
+                <div class="text-center"><a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">Delete</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
 {% endblock %}
