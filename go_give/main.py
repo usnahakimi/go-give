@@ -83,3 +83,10 @@ def delete_listing(listings_id):
     db.session.delete(listings)
     db.session.commit()
     return redirect(url_for('main.listings'))
+
+@main.route('/user_profile/<int:user_id>', methods=['GET'])
+@login_required
+def profile_user(user_id):
+ user = User.query.get_or_404(user_id) 
+ listings = user.listings
+ return render_template('listings/index.html', listings=listings)
