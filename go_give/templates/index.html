@@ -1,43 +1,42 @@
 {% extends "base.html" %} {% block head %} {{ super() }}
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='css/style.css') }}"
+  href="{{ url_for('static', filename='css/index.css') }}"
 />
-{% endblock %} {% block content %}
+{% endblock %} {% block  content %}
 
-<h1>Hello!</h1>
-  <center>
-    <img
-      src="{{ url_for('static', filename='images/random-logo.png') }}"
-      alt="logo"
-      height="200px"
-    />
-    </center>
-  <div>
-  <table class="table table-hover" style="width: 700px;">
-      <thead class="thead-dark">
-      <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Date</th>
-          <th scope="col">Description</th>
-          <th scope="col">Location</th>
-          <th scope="col">Email</th>
-          <th scope="col">Image</th>
-      </tr>
-      </thead>
-      <tbody>
-          {% for listings in listings%}
-          <tr>
-              <td>{{ listings.name }}</td>
-              <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
-              <td>{{ listings.description }}</td>
-              <td>{{ listings.location }}</td>
-              <td>{{ listings.email }}</td>
-              <td><img src="{{ listings.image_url}}"/></td>
-          </tr>
-          {% endfor %}
-          </tbody>
-      </table>
+<header>
+  <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center">
+          <h1 class="fw-bolder">Welcome to Go-Give</h1>
+          <p class="lead fw-normal mb-0">'Slogan here'</p>
+      </div>
   </div>
+</header>
 
+  <section class="py-5">
+    {% for listings in listings%}
+      <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div class="col sm-6">
+            <div class="card">
+              <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
+                <div class="card-body">
+                  <div class="text-center">
+                    <h3 class="fw-bolder">{{ listings.name }}</h3>
+                    <h5>{{ listings.description }}</h5>
+                    <h6>{{ listings.location }}</h6>
+                    <h6>{{ listings.email }}</h6>
+                    <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
+                  </div>
+                </div>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Message</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
 {% endblock %}

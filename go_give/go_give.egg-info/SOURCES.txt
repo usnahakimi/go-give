@@ -1,13 +1,18 @@
 .DS_Store
+.env
+.gitignore
 Pipfile
 Pipfile.lock
 README.md
 __init__.py
+application.py
 auth.py
 config.py
+db.sqlite
 helpers.py
 main.py
 models.py
+requirements.txt
 setup.py
 __pycache__/__init__.cpython-39.pyc
 __pycache__/auth.cpython-39.pyc
@@ -30,5 +35,4 @@ templates/profile.html
 templates/auth/login.html
 templates/auth/register.html
 templates/listings/create.html
-templates/listings/index.html
 templates/listings/update.html

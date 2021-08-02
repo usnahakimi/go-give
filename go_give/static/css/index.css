@@ -1,0 +1,26 @@
+body {
+    background-color: whitesmoke;
+}
+
+header {
+    background-color: whitesmoke;
+    text-align: center;
+    margin-top: -10px;
+    padding: 10px;
+    text-decoration-color: black;
+
+}
+
+.card {
+    width: 30rem;
+    height: fit-content;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h6 {
+    font-style: italic;
+}
+
