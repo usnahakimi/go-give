@@ -25,6 +25,10 @@
           <th scope="col">Image</th>
       </tr>
       </thead>
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/searchkeyword" method="post">
+        <input type="search" name="search-keyword" class="form-control form-control-dark" placeholder="Search for posts by keyword" aria-label="Search">
+        <button class="btn btn-warning" type="submit">Search</button>
+      </form>
       <tbody>
           {% for listings in listings%}
           <tr>

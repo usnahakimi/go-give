@@ -32,11 +32,12 @@
               <td><img src="{{ listings.author.avatar(36) }}"></td>
               <td>{{ listings.name }}</td>
               <td>{{ listings.date_posted.strftime('%m/%d/%Y') }}</td>
-              <td>{{ listings.description }}</td>
+              <td>{{ listings.description }}</td>       
               <td>{{ listings.location }}</td>
               <td>{{ listings.email }}</td>
               <td><img src="{{ listings.image_url}}"/></td>
-                  <a href="#" class="btn btn-outline-primary" role="button">
+              <td>
+                  <a href="{{ url_for('main.update_listing', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">
                       Edit
                   </a>
               </td>

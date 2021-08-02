@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Update the item{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+  <form action="/update/{{ listings.id }}" method="post" enctype="multipart/form-data">
+    <label for="name">Name</label>
+    <input name="name" id="name" value="{{ request.form['name'] or listings.name }}" required>
+    <label for="description">Description</label>
+    <textarea name="description" id="description">{{ request.form['description'] or listings.description }}</textarea>
+    <label for="email">Contact Email</label>
+    <input name="email" id="email" value="{{ request.form['email'] or listings.email }}" required>
+     <input type="file" name="file" class="form-control" autocomplete="off">
+    <input type="submit" value="Update" class="btn btn-info">
+  </form>
+</body>
+{% endblock %}
