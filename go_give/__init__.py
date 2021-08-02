@@ -2,16 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
-from flask_bootstrap import Bootstrap
 
 db = SQLAlchemy()
 migrate = Migrate()
-bootstrap = Bootstrap()
 
 def create_app():
     app = Flask(__name__)
-
-    bootstrap = Bootstrap(app)
 
     app.config['SECRET_KEY'] = 'secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'

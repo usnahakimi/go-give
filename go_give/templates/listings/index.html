@@ -32,6 +32,8 @@
                     <h6>{{ listings.location }}</h6>
                     <h6>{{ listings.email }}</h6>
                     <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
+                    <a href="{{ url_for('main.user_profile', user_id=user.id) }}"> <img src="{{ listings.author.avatar(36) }}"></a> 
+
                   </div>
                 </div>
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -44,3 +46,4 @@
     {% endfor %}
   </section>
 {% endblock %}
+<a href="{{ url_for('main.update_listings', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">Edit</a></div>
