@@ -30,7 +30,7 @@
                   </div>
                 </div>
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a href="#" class="btn btn-outline-primary" role="button">Edit</a></div>
+                <div class="text-center"><a href="{{ url_for('main.update_listings', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">Edit</a></div>
                 <div class="text-center"><a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">Delete</a></div>
               </div>
             </div>

@@ -4,15 +4,19 @@
   href="{{ url_for('static', filename='css/index.css') }}"
 />
 {% endblock %} {% block  content %}
+  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/searchkeyword" method="post">
+    <input type="search" name="search-keyword" class="form-control form-control-dark" placeholder="Search for posts by keyword" aria-label="Search">
+    <button class="btn btn-warning" type="submit">Search</button>
+  </form>
 
-<header>
-  <div class="container px-4 px-lg-5 my-5">
-      <div class="text-center">
-          <h1 class="fw-bolder">Welcome to Go-Give</h1>
-          <p class="lead fw-normal mb-0">'Slogan here'</p>
-      </div>
-  </div>
-</header>
+  <header>
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center">
+            <h1 class="fw-bolder">Welcome to Go-Give</h1>
+            <p class="lead fw-normal mb-0">'Slogan here'</p>
+        </div>
+    </div>
+  </header>
 
   <section class="py-5">
     {% for listings in listings%}
