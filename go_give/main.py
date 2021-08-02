@@ -84,18 +84,9 @@ def delete_listing(listings_id):
     db.session.commit()
     return redirect(url_for('main.listings'))
 
-# @main.route("/userprofile/<int:user_id>", methods=['POST'])
-# @login_required
-# def user_profile(user_id):
-#     user = User.query.get_or_404(user_id)
-#     # user = User.query.filter_by(email=current_user.email).first_or_404()
-#     listings = user.listings
-#     return render_template('listings/profile.html', name=user.firstname, user=user, listings=listings) 
-
-@main.route('/user_profile/<int:user_id>', methods=['POST'])
+@main.route('/user_profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required
-def user_profile(user_id):
-    user = User.query.get_or_404(user_id)
-    # user = User.query.filter_by(email=current_user.email).first_or_404()
-    listings = user.listings
-    return render_template('listings/profile.html', name=user.firstname, user=user, listings=listings)
+def profile_user(user_id):
+ user = User.query.get_or_404(user_id) 
+ listings = user.listings
+ return render_template('listings/index.html', listings=listings)
