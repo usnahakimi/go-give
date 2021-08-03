@@ -17,6 +17,14 @@
         </div>
     </div>
   </header>
+  {% for post in posts %}
+  {% if current_user.has_liked_post(post) %}
+    <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>
+  {% else %}
+    <a href="{{ url_for('like_action', post_id=post.id, action='like') }}">Like</a>
+  {% endif %}
+  {{ post.likes.count() }} likes
+{% endfor %}
 
   <section class="py-5">
     {% for listings in listings%}
@@ -34,9 +42,21 @@
                     <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
                   </div>
                 </div>
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Message</a></div>
-              </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent"></div>
+                  <div class="text-center">
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.has_liked_post(listings) %}
+                            <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}">Unlike</a>
+                        {% else %}
+                            <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}">Like</a>
+                        {% endif %}
+                        {{ listings.likes.count() }} likes
+                    {% else %}
+                        {{ listings.likes.count() }} likes
+                    {% endif %}
+                  </div>
+                  <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Message</a></div>
+                </div>
             </div>
           </div>
         </div>

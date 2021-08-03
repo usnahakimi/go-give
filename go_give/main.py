@@ -83,3 +83,16 @@ def delete_listing(listings_id):
     db.session.delete(listings)
     db.session.commit()
     return redirect(url_for('main.listings'))
+
+@main.route('/like/<int:listings_id>/<action>')
+@login_required
+def like_action(listings_id, action):
+    listings = Listings.query.filter_by(id=listings_id).first_or_404()
+    if action == 'like':
+        current_user.like_post(listings)
+        db.session.commit()
+    if action == 'unlike':
+        current_user.unlike_post(listings)
+        db.session.commit()
+    return redirect(request.referrer)
+    
