@@ -24,7 +24,7 @@ def listings():
 def profile():
     user = User.query.filter_by(email=current_user.email).first_or_404()
     listings = user.listings
-    likes = user.likes
+    likes = user.liked
     return render_template('listings/profile.html', name=current_user.firstname, user=user, listings=listings, likes=likes)
 
 
