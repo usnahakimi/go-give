@@ -2,21 +2,15 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
-<<<<<<< HEAD
-=======
 from flask_bootstrap import Bootstrap
 from flask_babel import Babel, lazy_gettext as _l
 from .admin import add_admin
->>>>>>> 1dc7fc351b79e4c5560cfe43d8cb04dfc1280d54
 
 
 db = SQLAlchemy()
 migrate = Migrate()
-<<<<<<< HEAD
-=======
 bootstrap = Bootstrap()
 babel = Babel()
->>>>>>> 1dc7fc351b79e4c5560cfe43d8cb04dfc1280d54
 
 
 def create_app():
