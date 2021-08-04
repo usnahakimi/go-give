@@ -33,20 +33,18 @@
       <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           <div class="col sm-6">
+            <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
             <div class="card">
               <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
                 <div class="card-body">
                   <div class="text-center">
                     <h3 class="fw-bolder">{{ listings.name }}</h3>
-                    <h5>{{ listings.description }}</h5>
                     <h6>{{ listings.location }}</h6>
-                    <h6>{{ listings.email }}</h6>
                     <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
                      <a href="{{ url_for('main.profile_user', user_id=listings.user_id) }}"> <img src="{{ listings.author.avatar(36) }}"></a> 
 
                   </div>
                 </div>
-<<<<<<< HEAD
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent"></div>
                   <div class="text-center">
                     {% if current_user.is_authenticated %}
@@ -59,17 +57,11 @@
                     {% else %}
                         {{ listings.likes.count() }} likes
                     {% endif %}
-                  </div>
-                  <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Message</a></div>
-                </div>
+                  
             </div>
-=======
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                   {% if user != current_user %}
                 <p><a href="{{ url_for('main.send_message', recipient=1) }}">{{ _('Send a private message') }}</a></p>
                 {% endif %}
-              </div>
->>>>>>> 1dc7fc351b79e4c5560cfe43d8cb04dfc1280d54
           </div>
         </div>
       </div>

@@ -143,3 +143,9 @@ def profile_user(user_id):
  user = User.query.get_or_404(user_id) 
  listings = user.listings
  return render_template('listings/index.html', listings=listings)
+
+@main.route('/item_description/<int:listings_id>')
+def item_description(listings_id):
+    listing = Listings.query.get_or_404(listings_id)
+    return render_template('listings/description.html', listings=listing)
+
