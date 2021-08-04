@@ -6,5 +6,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=["flask", "seleniumbase", "faker", "flask_sqlalchemy", "flask_login", "boto3", "flask_migrate"],
+    install_requires=["flask", "seleniumbase", "faker", "flask_sqlalchemy", "flask_login", "boto3", "flask_migrate", "flask_bootstrap", "flask_babel", "flask_admin", "flask_wtf"],
 )

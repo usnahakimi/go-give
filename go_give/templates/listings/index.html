@@ -58,10 +58,12 @@
                         {{ listings.likes.count() }} likes
                     {% endif %}
                   
-            </div>
-                  {% if user != current_user %}
-                <p><a href="{{ url_for('main.send_message', recipient=1) }}">{{ _('Send a private message') }}</a></p>
-                {% endif %}
+                    </div>
+                      {% if user != current_user %}
+                        <p><a href="{{ url_for('main.send_message', recipient=1) }}">{{ _('Send a private message') }}</a></p>
+                      {% endif %}
+                    </div>
+                </div>
           </div>
         </div>
       </div>
