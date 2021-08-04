@@ -2,10 +2,21 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+<<<<<<< HEAD
+=======
+from flask_bootstrap import Bootstrap
+from flask_babel import Babel, lazy_gettext as _l
+from .admin import add_admin
+>>>>>>> 1dc7fc351b79e4c5560cfe43d8cb04dfc1280d54
 
 
 db = SQLAlchemy()
 migrate = Migrate()
+<<<<<<< HEAD
+=======
+bootstrap = Bootstrap()
+babel = Babel()
+>>>>>>> 1dc7fc351b79e4c5560cfe43d8cb04dfc1280d54
 
 
 def create_app():
@@ -20,8 +31,10 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    babel.init_app(app)
 
-    from .models import User 
+    from .models import User
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
@@ -32,4 +45,5 @@ def create_app():
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
+    add_admin(app, db)
     return app
