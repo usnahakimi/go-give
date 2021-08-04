@@ -6,7 +6,7 @@ header {
     background-color: whitesmoke;
     text-align: center;
     margin-top: -10px;
-    padding: 10px;
+    padding: 20px;
     text-decoration-color: black;
 
 }
@@ -17,10 +17,15 @@ header {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 80rem;
+    padding: 30px;
 }
 
 h6 {
     font-style: italic;
 }
 
+.container {
+    width: 1200px;
+    margin: 0 auto;
+  }
