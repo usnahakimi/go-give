@@ -12,17 +12,19 @@ class User(db.Model, UserMixin):
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
     location = db.Column(db.String(100))
+    image_url = db.Column(db.String(100), nullable=False)
+
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     listings = db.relationship('Listings', backref='author', lazy=True)
     liked = db.relationship('PostLike', foreign_keys='PostLike.user_id', backref='author', lazy='dynamic')
 
-    # messages_sent = db.relationship('Message',
-    #                                 foreign_keys='Message.sender_id',
-    #                                 backref='author', lazy='dynamic')
-    # messages_received = db.relationship('Message',
-    #                                     foreign_keys='Message.recipient_id',
-    #                                     backref='recipient', lazy='dynamic')
-    # last_message_read_time = db.Column(db.DateTime)
+    messages_sent = db.relationship('Message',
+                                    foreign_keys='Message.sender_id',
+                                    backref='author', lazy='dynamic')
+    messages_received = db.relationship('Message',
+                                        foreign_keys='Message.recipient_id',
+                                        backref='recipient', lazy='dynamic')
+    last_message_read_time = db.Column(db.DateTime)
 
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
@@ -45,15 +47,17 @@ class User(db.Model, UserMixin):
             PostLike.user_id == self.id,
             PostLike.listings_id == listings.id).count() > 0
 
+    def new_messages(self):
+        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+        return Message.query.filter_by(recipient=self).filter(
+            Message.timestamp > last_read_time).count()
+
+
 class PostLike(db.Model):
     __tablename__ = 'post_like'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     listings_id = db.Column(db.Integer, db.ForeignKey('listings.id'))
-    def new_messages(self):
-        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
-        return Message.query.filter_by(recipient=self).filter(
-            Message.timestamp > last_read_time).count()
 
 
 class Listings(db.Model):

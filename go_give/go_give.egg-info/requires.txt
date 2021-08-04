@@ -6,3 +6,6 @@ flask_login
 boto3
 flask_migrate
 flask_bootstrap
+flask_babel
+flask_admin
+flask_wtf
