@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block head %} {{ super() }}
+
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='css/index.css') }}"
@@ -16,6 +17,7 @@
             <p class="lead fw-normal mb-0">'Slogan here'</p>
         </div>
     </div>
+    <h4>Welcome, {{ current_user.username }}!</h4>
   </header>
 
   <section class="py-5">
@@ -37,9 +39,10 @@
                   </div>
                 </div>
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Message</a></div>
+                  {% if user != current_user %}
+                <p><a href="{{ url_for('main.send_message', recipient=1) }}">{{ _('Send a private message') }}</a></p>
+                {% endif %}
               </div>
-            </div>
           </div>
         </div>
       </div>
