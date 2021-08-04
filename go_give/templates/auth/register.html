@@ -10,9 +10,15 @@
     <div class="row g-2">
       <body class="text-center">
         <main class="form-signin">
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
               <img class="mb-4" src="{{ url_for('static', filename='images/random-logo.png') }}" alt="" width="200" height="200">
               <h1 class="h3 mb-3 fw-normal">Register</h1>
+            <div class="col-12">
+              <div class="form-floating">
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+                <label for="lastname">Profile image</label>
+              </div>
+            </div>
             <div class="col-12">
               <div class="form-floating">
                 <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First name">

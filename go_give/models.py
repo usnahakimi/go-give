@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
     location = db.Column(db.String(100))
+    image_url = db.Column(db.String(100), nullable=False)
+
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     listings = db.relationship('Listings', backref='author', lazy=True)
     liked = db.relationship('PostLike', foreign_keys='PostLike.user_id', backref='author', lazy='dynamic')
