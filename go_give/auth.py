@@ -4,6 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import User
 from . import db
+from go_give.helpers import upload_file_to_s3
+from go_give.config import S3_BUCKET
 
 
 auth = Blueprint('auth', __name__)
@@ -18,6 +20,8 @@ def register():
         location = request.form.get('location')
         username = request.form.get('username')
         password = request.form.get('password')
+        file = request.files['file']
+        image_url = upload_file_to_s3(file, S3_BUCKET)
         error = None
 
         if not email:
@@ -46,7 +50,7 @@ def register():
 
         if error is None:
             new_user = User(email=email, firstname=firstname, lastname=lastname, 
-            location=location, username=username, password=generate_password_hash(password, method='sha256'))
+            location=location, username=username, password=generate_password_hash(password, method='sha256'), image_url = image_url)
             db.session.add(new_user)
             db.session.commit()
 

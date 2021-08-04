@@ -9,7 +9,7 @@
 
   <header>
     <h4>Welcome, {{ name }}!</h4>
-    <img src="{{ user.avatar(128) }}">
+    <img src="{{ user.image_url }}">
   </header>
 
   <section class="py-5">
@@ -26,7 +26,7 @@
                     <h6>{{ listings.location }}</h6>
                     <h6>{{ listings.email }}</h6>
                     <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
-                    <img src="{{ listings.author.avatar(36) }}">
+                    <img src="{{ listings.author.image_url }}">
                   </div>
                 </div>
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
