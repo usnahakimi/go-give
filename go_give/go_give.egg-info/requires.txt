@@ -4,3 +4,4 @@ faker
 flask_sqlalchemy
 flask_login
 boto3
+flask_migrate

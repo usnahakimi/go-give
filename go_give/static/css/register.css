@@ -1,0 +1,21 @@
+.container {
+    padding: 20rem;
+    justify-content: space-between;
+}
+
+.form-signin {
+    padding: 5rem;
+}
+
+.form-control {
+    justify-content: space-between;
+}
+
+.form-floating>.form-control {
+    padding: 2rem .75rem;
+}
+
+.btn btn-warning {
+    margin-top: 5rem;
+    padding: 5rem
+}

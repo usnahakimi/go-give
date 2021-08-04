@@ -13,11 +13,35 @@ class User(db.Model, UserMixin):
     location = db.Column(db.String(100))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     listings = db.relationship('Listings', backref='author', lazy=True)
+    liked = db.relationship('PostLike', foreign_keys='PostLike.user_id', backref='author', lazy='dynamic')
 
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
+
+    def like_post(self, listings):
+        if not self.has_liked_post(listings):
+            like = PostLike(user_id=self.id, listings_id=listings.id)
+            db.session.add(like)
+
+    def unlike_post(self, listings):
+        if self.has_liked_post(listings):
+            PostLike.query.filter_by(
+                user_id=self.id,
+                listings_id=listings.id).delete()
+
+    def has_liked_post(self, listings):
+        return PostLike.query.filter(
+            PostLike.user_id == self.id,
+            PostLike.listings_id == listings.id).count() > 0
+
+class PostLike(db.Model):
+    __tablename__ = 'post_like'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    listings_id = db.Column(db.Integer, db.ForeignKey('listings.id'))
+
 
 class Listings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,5 +50,7 @@ class Listings(db.Model):
     location = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(400), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    image_url = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    image_url = db.Column(db.String(100), nullable=False) 
+
+    likes = db.relationship('PostLike', backref='listings', lazy='dynamic')

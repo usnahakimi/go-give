@@ -8,7 +8,6 @@ __init__.py
 application.py
 auth.py
 config.py
-db.sqlite
 helpers.py
 main.py
 models.py
@@ -25,14 +24,16 @@ go_give.egg-info/not-zip-safe
 go_give.egg-info/requires.txt
 go_give.egg-info/top_level.txt
 static/.DS_Store
+static/css/base.css
+static/css/index.css
 static/css/style.css
 static/images/.DS_Store
 static/images/random-logo.ico
 static/images/random-logo.png
 templates/base.html
-templates/index.html
-templates/profile.html
 templates/auth/login.html
 templates/auth/register.html
 templates/listings/create.html
+templates/listings/index.html
+templates/listings/profile.html
 templates/listings/update.html
