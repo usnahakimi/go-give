@@ -1,6 +1,6 @@
 from . import db
 from .models import User, Message
-from .models import Listings
+from .models import Listings, PostLike
 from flask import Blueprint, render_template, url_for, redirect, request, flash, current_app
 from flask_login import login_required, current_user
 from .helpers import upload_file_to_s3
@@ -24,7 +24,8 @@ def listings():
 def profile():
     user = User.query.filter_by(email=current_user.email).first_or_404()
     listings = user.listings
-    return render_template('listings/profile.html', name=current_user.firstname, user=user, listings=listings)
+    likes = user.likes
+    return render_template('listings/profile.html', name=current_user.firstname, user=user, listings=listings, likes=likes)
 
 
 @main.route('/create_listing')

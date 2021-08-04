@@ -38,5 +38,25 @@
         </div>
       </div>
     {% endfor %}
+    {% for listings in likes %}
+      <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div class="col sm-6">
+            <div class="card">
+              <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
+                <div class="card-body">
+                  <div class="text-center">
+                    <h3 class="fw-bolder">{{ listings.name }}</h3>
+                    <h5>{{ listings.description }}</h5>
+                    <h6>{{ listings.location }}</h6>
+                    <h6>{{ listings.email }}</h6>
+                    <img src="{{ listings.author.avatar(36) }}">
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
   </section>
 {% endblock %}

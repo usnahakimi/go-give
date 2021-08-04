@@ -9,7 +9,6 @@ admin.py
 application.py
 auth.py
 config.py
-db.sqlite
 forms.py
 helpers.py
 main.py

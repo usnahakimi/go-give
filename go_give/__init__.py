@@ -15,7 +15,6 @@ babel = Babel()
 
 def create_app():
     app = Flask(__name__)
-    bootstrap = Bootstrap(app)
 
 
     app.config['SECRET_KEY'] = 'secret-key'
@@ -23,6 +22,7 @@ def create_app():
 
     db.init_app(app)
     bootstrap = Bootstrap(app)
+    babel = Babel(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
