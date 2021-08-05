@@ -12,12 +12,13 @@
   {% for listings in listings%}
     <div class="card mb-3" id="card">
         <div class="card-body">
-          <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
           <div class="col-md-2">
             <img src="{{ listings.image_url}}"  alt="..." width="250" height="250">
           </div>
           <br>
-          <h5 class="card-title">{{ listings.name }}</h5>
+          <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
+            <h5 class="card-title">{{ listings.name }}</h5>
+          </a>
           <p class="card-text">{{ listings.location }}</p>
           <p class="card-text"><small class="text-muted">{{ listings.date_posted.strftime('%m/%d/%Y') }}</small></p>
           <br/>
