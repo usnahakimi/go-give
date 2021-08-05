@@ -46,8 +46,13 @@ def register():
         user = User.query.filter_by(email=email).first()
 
         if user:
-            return redirect(url_for('main.profile'))
+            error = "This user exists!"
+            flash(error)
+            
+            return redirect(url_for('auth.login'))
 
+            
+        
         if error is None:
             new_user = User(email=email, firstname=firstname, lastname=lastname, 
             location=location, username=username, password=generate_password_hash(password, method='sha256'), image_url = image_url)

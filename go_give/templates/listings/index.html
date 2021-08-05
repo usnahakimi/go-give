@@ -4,6 +4,7 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='css/base.css') }}"
 />
+<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 {% endblock %} {% block content %}
   <body class="text-center">
     <h1 class="fw-bolder">Welcome to Go-Give</h1>
@@ -12,13 +13,13 @@
       <h4>Welcome, {{ current_user.username }}!</h4>
     {% endif %}
 
-    <section class="py-5">
-      {% for listings in listings%}
+    {% for listings in listings%}
+      <section class="album py-5">
         <div class="container px-4 px-lg-5 mt-5">
-          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col sm-6">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+            <div class="col">
               <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
-              <div class="card">
+              <div class="card shadow-sm">
                 <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
                   <div class="card-body">
                     <div class="text-center">
@@ -50,7 +51,7 @@
             </div>
           </div>
         </div>
-      {% endfor %}
-    </section>
+      </section>
+    {% endfor %}
   </body>
 {% endblock %}
