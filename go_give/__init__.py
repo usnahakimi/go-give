@@ -17,14 +17,11 @@ def create_app():
     app = Flask(__name__)
     bootstrap = Bootstrap(app)
 
-    bootstrap = Bootstrap(app)
-
 
     app.config['SECRET_KEY'] = 'secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
     db.init_app(app)
-    bootstrap = Bootstrap(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

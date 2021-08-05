@@ -42,8 +42,9 @@ def create_listing_post():
     email = request.form.get('email')
     file = request.files['file']
     image_url = upload_file_to_s3(file, S3_BUCKET)
+    category = request.form.get('category')
     listings = Listings(name=name, description=description, location=location, email=email, author=current_user,
-                        image_url=image_url)
+                        image_url=image_url, categories=category)
     db.session.add(listings)
     db.session.commit()
     return redirect(url_for('main.listings'))
@@ -77,6 +78,10 @@ def update_listings(listings_id):
 def search_by_keyword():
     keyword = request.form["search-keyword"]
     listings = db.session.query(Listings).filter(Listings.description.ilike(f"%{keyword}%")).all()
+    listings += db.session.query(Listings).filter(Listings.name.ilike(f"%{keyword}%")).all()
+    listings += db.session.query(Listings).filter(Listings.location.ilike(f"%{keyword}%")).all()
+    listings += db.session.query(Listings).filter(Listings.categories.ilike(f"%{keyword}%")).all()
+
     return render_template('listings/index.html', listings=listings)
 
 
