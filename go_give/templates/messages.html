@@ -22,7 +22,7 @@
             <tr>
                 <th scope="row">{{ loop.index }}</th>
                 <td>{{ message.body }}</td>
-                <td>{{ from_email }}</td>
+                <td> <a href="mailto:{{ from_email }}">{{ from_email }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
