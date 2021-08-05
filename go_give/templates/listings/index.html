@@ -5,6 +5,8 @@
   href="{{ url_for('static', filename='css/base.css') }}"
 />
 <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+<script src="https://kit.fontawesome.com/0cea5b97e1.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %} {% block content %}
   <body class="text-center">
     <h1 class="fw-bolder">Welcome to Go-Give</h1>
@@ -33,9 +35,9 @@
                     <div class="text-center">
                       {% if current_user.is_authenticated %}
                           {% if current_user.has_liked_post(listings) %}
-                              <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}">Unlike</a>
+                              <a class="far fa-thumbs-down" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}"></a>
                           {% else %}
-                              <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}">Like</a>
+                              <a class="far fa-thumbs-up" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}"></a>
                           {% endif %}
                           {{ listings.likes.count() }} likes
                       {% else %}
