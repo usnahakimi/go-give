@@ -1,57 +1,43 @@
-{% extends "base.html" %} {% block head %} {{ super() }}
-
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/base.css') }}"
-/>
-<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
-{% endblock %} {% block content %}
-  <body class="text-center">
-    <h1 class="fw-bolder">Welcome to Go-Give</h1>
-    <p class="lead fw-normal mb-0">'Slogan here'</p>
-    {% if current_user.is_authenticated %}
-      <h4>Welcome, {{ current_user.username }}!</h4>
-    {% endif %}
-
-    {% for listings in listings%}
-      <section class="album py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
-            <div class="col">
-              <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
-              <div class="card shadow-sm">
-                <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
-                  <div class="card-body">
-                    <div class="text-center">
-                      <h3 class="fw-bolder">{{ listings.name }}</h3>
-                      <h6>{{ listings.location }}</h6>
-                      <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
-                      <a href="{{ url_for('main.profile_user', user_id=listings.user_id) }}"> <img src="{{ listings.author.image_url }}" width="100" height="100"></a> 
-                    </div>
-                  </div>
-                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent"></div>
-                    <div class="text-center">
-                      {% if current_user.is_authenticated %}
-                          {% if current_user.has_liked_post(listings) %}
-                              <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}">Unlike</a>
-                          {% else %}
-                              <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}">Like</a>
-                          {% endif %}
-                          {{ listings.likes.count() }} likes
-                      {% else %}
-                          {{ listings.likes.count() }} likes
-                      {% endif %}
-                    
-                      </div class="text-center">
-                        {% if user != current_user %}
-                          <a class="btn btn-outline-dark" href="{{ url_for('main.send_message', recipient=1) }}">Message</a>
-                        {% endif %}
-                      </div>
-                  </div>
-            </div>
+{% extends "base.html" %} {{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
+{% block content %}
+  {% if not current_user.is_authenticated %}
+    <h1>Welcome to Go-Give</h1>
+    <p class="lead fw-normal mb-0">Where you can reduce your waste by giving your unwanted belongings away to someone who needs it</p>
+  {% endif %}
+  {% if current_user.is_authenticated %}
+    <h4 class="text-center">Welcome, {{ current_user.username }}!</h4>
+  {% endif %}
+  <br/>
+  {% for listings in listings%}
+    <div class="card mb-3" id="card">
+        <div class="card-body">
+          <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
+          <div class="col-md-2">
+            <img src="{{ listings.image_url}}"  alt="..." width="250" height="250">
+          </div>
+          <br>
+          <h5 class="card-title">{{ listings.name }}</h5>
+          <p class="card-text">{{ listings.location }}</p>
+          <p class="card-text"><small class="text-muted">{{ listings.date_posted.strftime('%m/%d/%Y') }}</small></p>
+          <br/>
+          <a href="{{ url_for('main.profile_user', user_id=listings.user_id) }}"> <img src="{{ listings.author.image_url }}" width="50" height="50"></a> 
+          <div class="text-center">
+            {% if current_user.is_authenticated %}
+              {% if current_user.has_liked_post(listings) %}
+                <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}">Unlike</a>
+              {% else %}
+                <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}">Like</a>
+              {% endif %}
+                {{ listings.likes.count() }} likes
+              {% else %}
+                {{ listings.likes.count() }} likes
+              {% endif %}
+              {% if user != current_user %}
+                <a class="btn btn-outline-dark" href="{{ url_for('main.send_message', recipient=1) }}">Message</a>
+              {% endif %}
           </div>
         </div>
-      </section>
-    {% endfor %}
-  </body>
+    </div>
+  {% endfor %}
 {% endblock %}
