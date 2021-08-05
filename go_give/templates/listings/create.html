@@ -37,6 +37,13 @@
               &nbsp;&nbsp;&nbsp;
               <div class="col-12">
                 <div class="form-floating">
+                  <input type="text" name="category" class="form-control" id="category" placeholder="Category" value="{{ request.form['category'] }}" required>
+                  <label for="category">Category</label>
+                </div>
+              </div>
+              &nbsp;&nbsp;&nbsp;
+              <div class="col-12">
+                <div class="form-floating">
                   <input type="text" name="location" class="form-control" id="location" placeholder="Location" value="{{ request.form['location'] }}" required>
                   <label for="location">Location</label>
                 </div>
