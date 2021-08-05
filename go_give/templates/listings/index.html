@@ -2,71 +2,55 @@
 
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='css/index.css') }}"
+  href="{{ url_for('static', filename='css/base.css') }}"
 />
-{% endblock %} {% block  content %}
-  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/searchkeyword" method="post">
-    <input type="search" name="search-keyword" class="form-control form-control-dark" placeholder="Search for items" aria-label="Search">
-    <button class="btn btn-warning" type="submit">Search</button>
-  </form>
+{% endblock %} {% block content %}
+  <body class="text-center">
+    <h1 class="fw-bolder">Welcome to Go-Give</h1>
+    <p class="lead fw-normal mb-0">'Slogan here'</p>
+    {% if current_user.is_authenticated %}
+      <h4>Welcome, {{ current_user.username }}!</h4>
+    {% endif %}
 
-  <header>
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center">
-            <h1 class="fw-bolder">Welcome to Go-Give</h1>
-            <p class="lead fw-normal mb-0">'Slogan here'</p>
-        </div>
-    </div>
-    <h4>Welcome, {{ current_user.username }}!</h4>
-  </header>
-  {% for post in posts %}
-  {% if current_user.has_liked_post(post) %}
-    <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>
-  {% else %}
-    <a href="{{ url_for('like_action', post_id=post.id, action='like') }}">Like</a>
-  {% endif %}
-  {{ post.likes.count() }} likes
-{% endfor %}
-
-  <section class="py-5">
-    {% for listings in listings%}
-      <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-          <div class="col sm-6">
-            <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
-            <div class="card">
-              <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
-                <div class="card-body">
-                  <div class="text-center">
-                    <h3 class="fw-bolder">{{ listings.name }}</h3>
-                    <h6>{{ listings.location }}</h6>
-                    <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
-                     <a href="{{ url_for('main.profile_user', user_id=listings.user_id) }}"> <img src="{{ listings.author.image_url }}" width="100" height="100"></a> 
-
+    <section class="py-5">
+      {% for listings in listings%}
+        <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col sm-6">
+              <a href="{{ url_for('main.item_description', listings_id=listings.id) }}">
+              <div class="card">
+                <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
+                  <div class="card-body">
+                    <div class="text-center">
+                      <h3 class="fw-bolder">{{ listings.name }}</h3>
+                      <h6>{{ listings.location }}</h6>
+                      <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
+                      <a href="{{ url_for('main.profile_user', user_id=listings.user_id) }}"> <img src="{{ listings.author.image_url }}" width="100" height="100"></a> 
+                    </div>
                   </div>
-                </div>
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent"></div>
-                  <div class="text-center">
-                    {% if current_user.is_authenticated %}
-                        {% if current_user.has_liked_post(listings) %}
-                            <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}">Unlike</a>
-                        {% else %}
-                            <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}">Like</a>
-                        {% endif %}
-                        {{ listings.likes.count() }} likes
-                    {% else %}
-                        {{ listings.likes.count() }} likes
-                    {% endif %}
-                  
-                    </div>
-                      {% if user != current_user %}
-                        <p><a href="{{ url_for('main.send_message', recipient=1) }}">{{ _('Send a private message') }}</a></p>
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent"></div>
+                    <div class="text-center">
+                      {% if current_user.is_authenticated %}
+                          {% if current_user.has_liked_post(listings) %}
+                              <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='unlike') }}">Unlike</a>
+                          {% else %}
+                              <a class="btn btn-danger" href="{{ url_for('main.like_action', listings_id=listings.id, action='like') }}">Like</a>
+                          {% endif %}
+                          {{ listings.likes.count() }} likes
+                      {% else %}
+                          {{ listings.likes.count() }} likes
                       {% endif %}
-                    </div>
-                </div>
+                    
+                      </div class="text-center">
+                        {% if user != current_user %}
+                          <a class="btn btn-outline-dark" href="{{ url_for('main.send_message', recipient=1) }}">Message</a>
+                        {% endif %}
+                      </div>
+                  </div>
+            </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-  </section>
+      {% endfor %}
+    </section>
+  </body>
 {% endblock %}

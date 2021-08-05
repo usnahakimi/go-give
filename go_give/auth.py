@@ -46,7 +46,7 @@ def register():
         user = User.query.filter_by(email=email).first()
 
         if user:
-            return redirect(url_for('auth.register'))
+            return redirect(url_for('main.profile'))
 
         if error is None:
             new_user = User(email=email, firstname=firstname, lastname=lastname, 

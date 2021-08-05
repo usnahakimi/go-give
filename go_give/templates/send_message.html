@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
+{% block head %} {{ super() }}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/index.css') }}"
+/>
+{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-4">
-            {{ wtf.quick_form(form) }}
+    <div class="container-fluid">
+        <div class="row g-2">
+            <body class="text-center">
+                <div class="col-6">
+                    <div class="form-floating">
+                        {{ wtf.quick_form(form) }}
+                    </div>
+                </div>
+            </body>
         </div>
     </div>
 {% endblock %}

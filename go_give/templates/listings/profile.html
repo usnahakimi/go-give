@@ -1,62 +1,66 @@
 {% extends "base.html" %}  {% block head %} {{ super() }}
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='css/style.css') }}"
+  href="{{ url_for('static', filename='css/profile.css') }}"
 />
-{% endblock %}
+{% endblock %} {% block content %}
 
-{% block content %}
+  <body>
+    <header>
+      <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center">
+          <h4>Welcome, {{ name }}!</h4>
+          <img class="mb-4" src="{{ user.image_url }}" width="200" height="200">
+        </div>
+      </div>
+    </header>
 
-  <header>
-    <h4>Welcome, {{ name }}!</h4>
-    <img class="mb-4" src="{{ user.image_url }}" width="200" height="200">
-  </header>
-
-  <section class="py-5">
-    {% for listings in listings%}
-      <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-          <div class="col sm-6">
-            <div class="card">
-              <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
-                <div class="card-body">
-                  <div class="text-center">
-                    <h3 class="fw-bolder">{{ listings.name }}</h3>
-                    <h5>{{ listings.description }}</h5>
-                    <h6>{{ listings.location }}</h6>
-                    <h6>{{ listings.email }}</h6>
-                    <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
-                    <img class="mb-4" src="{{ listings.author.image_url }}" width="100" height="100">
+    <section class="py-5">
+      {% for listings in listings%}
+        <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col sm-6">
+              <div class="card">
+                <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
+                  <div class="card-body">
+                    <div class="text-center">
+                      <h3 class="fw-bolder">{{ listings.name }}</h3>
+                      <h5>{{ listings.description }}</h5>
+                      <h6>{{ listings.location }}</h6>
+                      <h6>{{ listings.email }}</h6>
+                      <h6>{{ listings.date_posted.strftime('%m/%d/%Y') }}</h6>
+                      <img class="mb-4" src="{{ listings.author.image_url }}" width="100" height="100">
+                    </div>
                   </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center"><a href="{{ url_for('main.update_listings', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">Edit</a></div>
+                  <div class="text-center"><a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">Delete</a></div>
                 </div>
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a href="{{ url_for('main.update_listings', listings_id=listings.id) }}" class="btn btn-outline-primary" role="button">Edit</a></div>
-                <div class="text-center"><a href="{{ url_for('main.delete_listing', listings_id=listings.id) }}" class="btn btn-outline-danger" role="button">Delete</a></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-    {% for listings in likes %}
-      <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-          <div class="col sm-6">
-            <div class="card">
-              <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
-                <div class="card-body">
-                  <div class="text-center">
-                    <h3 class="fw-bolder">{{ listings.name }}</h3>
-                    <h5>{{ listings.description }}</h5>
-                    <h6>{{ listings.location }}</h6>
-                    <h6>{{ listings.email }}</h6>
-                    <img src="{{ listings.author.avatar(36) }}">
+      {% endfor %}
+      {% for listings in likes %}
+        <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col sm-6">
+              <div class="card">
+                <img class="card-img-top" src="{{ listings.image_url}}" alt="...">
+                  <div class="card-body">
+                    <div class="text-center">
+                      <h3 class="fw-bolder">{{ listings.name }}</h3>
+                      <h5>{{ listings.description }}</h5>
+                      <h6>{{ listings.location }}</h6>
+                      <h6>{{ listings.email }}</h6>
+                      <img src="{{ listings.author.avatar(36) }}">
+                    </div>
                   </div>
-                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-  </section>
+      {% endfor %}
+    </section>
+  </body>
 {% endblock %}

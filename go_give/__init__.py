@@ -15,21 +15,14 @@ babel = Babel()
 
 def create_app():
     app = Flask(__name__)
-<<<<<<< HEAD
-=======
     bootstrap = Bootstrap(app)
->>>>>>> categories_of_items
 
 
     app.config['SECRET_KEY'] = 'secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
     db.init_app(app)
-<<<<<<< HEAD
-    bootstrap = Bootstrap(app)
     babel = Babel(app)
-=======
->>>>>>> categories_of_items
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

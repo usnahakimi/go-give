@@ -1,90 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% block head %}
-    <title>Go-Give</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="{{ url_for('static', filename='images/random-logo.ico') }}"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Arvo&display=swap"
-      rel="stylesheet"
-    />
+      {% block head %}
+      <title>Go-Give</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="{{ url_for('static', filename='images/random-logo.ico') }}"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Arvo&display=swap"
+        rel="stylesheet"
+      />
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/base.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+      <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/base.css') }}"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+      />
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+      ></script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+      ></script>
 
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+      <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+      ></script>
     {% endblock %}
   </head>
-    
-  <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img class="bi me-2" src="{{ url_for('static', filename='images/random-logo.png') }}" alt="" width="50" height="50" role="img" aria-label="GoGive">
-      </a>
-    
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{{ url_for('main.listings') }}" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
-      </ul>
-    
-      <div class="col-md-3 text-end">
-        {% if not current_user.is_authenticated %}
-          <a class="btn btn-success me-2" href="{{ url_for('auth.register') }}">Register</a>
-          <a class="btn btn-warning" href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %} {% if current_user.is_authenticated %}
-          <a class="btn btn-info" href="{{url_for('main.create_listing')}}">List an item</a>
-          <a class="btn btn-warning" href="{{ url_for('auth.logout') }}">Log out</a>
-        <a class="btn btn-info" href="{{url_for('main.messages')}}">Messages
-            {% set new_messages = current_user.new_messages() %}
-              {% if new_messages %}
-              <span class="badge">{{ new_messages }}</span>
-              {% endif %}
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img class="bi me-2" src="{{ url_for('static', filename='images/random-logo.png') }}" alt="" width="50" height="50" role="img" aria-label="GoGive">
+          Go Give
         </a>
-        {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{{ url_for('main.listings') }}">Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            {% endif %}
+          </ul>
+          {% if not current_user.is_authenticated %}
+          <a class="btn btn-success me-2" href="{{ url_for('auth.register') }}">Register</a>
+          &nbsp;&nbsp;&nbsp;
+          <a class="btn btn-warning" href="{{ url_for('auth.login') }}">Log In</a>
+          {% endif %}
+          &nbsp;&nbsp;&nbsp;
+          {% if current_user.is_authenticated %}
+            <form class="d-flex" action="/searchkeyword" method="post">
+              <input type="search" name="search-keyword" class="form-control me-2" placeholder="Search by keyword" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-outline-info" href="{{url_for('main.create_listing')}}">List an item</a>
+            &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-outline-light" href="{{url_for('main.messages')}}">Messages</a>
+              {% set new_messages = current_user.new_messages() %}
+                {% if new_messages %}
+                  <span class="badge">{{ new_messages }}</span>
+                {% endif %}
+            &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-outline-warning" href="{{ url_for('auth.logout') }}">Log out</a>
+            &nbsp;&nbsp;&nbsp;
+          {% endif %}
+        </div>
       </div>
-    </header>
-  </div>
+    </nav>
+    {% block header %}{% endblock %}
+  </header>
   <body>
-    <div class="container">
-      <section class="content">
-        <header>
-          {% block header %}{% endblock %}
-        </header>
-          {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
-          {% endfor %}
-      </section> 
-    </div>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
     {% block content %} {% endblock %}
+
+    <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
   </body>
 </html>

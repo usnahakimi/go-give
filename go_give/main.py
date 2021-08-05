@@ -85,13 +85,6 @@ def search_by_keyword():
 
     return render_template('listings/index.html', listings=listings)
 
-
-# @main.route('/all')
-# @login_required
-# def listings():
-#     listings = Listings.query.all()
-#     return render_template('index.html', listings=listings)
-
 @main.route("/listings/<int:listings_id>/delete", methods=['GET', 'POST'])
 @login_required
 def delete_listing(listings_id):
