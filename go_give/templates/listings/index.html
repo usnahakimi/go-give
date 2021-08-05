@@ -2,12 +2,12 @@
 
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='css/index.css') }}"
+  href="{{ url_for('static', filename='css/base.css') }}"
 />
 {% endblock %} {% block content %}
   <body class="text-center">
-    <h1 class="py-5 mx-5">Welcome to Go-Give</h1>
-    <p>'Slogan here'</p>
+    <h1 class="fw-bolder">Welcome to Go-Give</h1>
+    <p class="lead fw-normal mb-0">'Slogan here'</p>
     {% if current_user.is_authenticated %}
       <h4>Welcome, {{ current_user.username }}!</h4>
     {% endif %}

@@ -10,22 +10,3 @@ header {
     text-decoration-color: black;
 
 }
-
-.card {
-    width: 30rem;
-    height: fit-content;
-}
-
-h1 {
-    font-size: 80rem;
-    padding: 30px;
-}
-
-h6 {
-    font-style: italic;
-}
-
-.container {
-    width: 1200px;
-    margin: 0 auto;
-  }
