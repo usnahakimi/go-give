@@ -20,46 +20,46 @@
           <form action="/create_listing" method="post" enctype="multipart/form-data">
                 <img class="mb-4" src="{{ url_for('static', filename='images/random-logo.png') }}" alt="" width="100" height="100">
                 <h1 class="h3 mb-3 fw-normal">List your item</h1>
-              &nbsp;&nbsp;&nbsp;
+              &nbsp;
               <div class="col-12">
                 <div class="form-floating">
                   <input type="text" name="name" value="{{ request.form['name'] }}" class="form-control" id="name" placeholder="Item Name" required>
                   <label for="name"> Item Name</label>
                 </div>
               </div>
-              &nbsp;&nbsp;&nbsp;
+              &nbsp;
               <div class="col-12">
                 <div class="form-floating">
                   <textarea type="text" name="description" class="form-control" id="description" placeholder="Description" required>{{ request.form['description'] }}</textarea>
                   <label for="description">Description</label>
                 </div>
               </div>
-              &nbsp;&nbsp;&nbsp;
+              &nbsp;
               <div class="col-12">
                 <div class="form-floating">
                   <input type="text" name="category" class="form-control" id="category" placeholder="Category" value="{{ request.form['category'] }}" required>
                   <label for="category">Category</label>
                 </div>
               </div>
-              &nbsp;&nbsp;&nbsp;
+              &nbsp;
               <div class="col-12">
                 <div class="form-floating">
                   <input type="text" name="location" class="form-control" id="location" placeholder="Location" value="{{ request.form['location'] }}" required>
                   <label for="location">Location</label>
                 </div>
               </div>
-              &nbsp;&nbsp;&nbsp;
+              <br/>
               <div class="col-12">
                 <div class="form-floating">
                   <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ request.form['email'] }}" required>
                   <label for="email">Email</label>
                 </div>
               </div>
-              &nbsp;&nbsp;&nbsp;
+              &nbsp;
               <input type="file" name="file" class="form-control" autocomplete="off" required>
-              &nbsp;&nbsp;&nbsp;
+              <br/>
               <button class="btn btn-outline-info" type="submit">List</button>
-              &nbsp;&nbsp;&nbsp;
+              <br/>
           </form>
         </main>
       </body>

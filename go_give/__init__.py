@@ -21,6 +21,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
+    app.static_folder = 'static'
     db.init_app(app)
     babel = Babel(app)
 

@@ -8,15 +8,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row g-2">
-            <body class="text-center">
-                <div class="col-6">
-                    <div class="form-floating">
-                        {{ wtf.quick_form(form) }}
-                    </div>
-                </div>
-            </body>
+    <div class="text-center">
+        <div class="form-floating">
+            {{ wtf.quick_form(form) }}
         </div>
     </div>
 {% endblock %}
