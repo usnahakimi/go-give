@@ -72,6 +72,7 @@ class Listings(db.Model):
 
     likes = db.relationship('PostLike', backref='listings', lazy='dynamic')
     image_url = db.Column(db.String(100), nullable=False)
+    categories = db.Column(db.String(20))
 
 
 class Message(db.Model):

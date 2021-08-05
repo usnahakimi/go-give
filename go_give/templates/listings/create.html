@@ -7,11 +7,13 @@
 
 {% block content %}
 <body class="text-center">
-  <form action="/create_listing" method="post" enctype="multipart/form-data">
+  <form action="/create_listing" method="POST" enctype="multipart/form-data">
     <label for="name">Name</label>
     <input name="name" id="name" value="{{ request.form['name'] }}" required>
     <label for="description">Description</label>
     <textarea name="description" id="description">{{ request.form['description'] }}</textarea>
+    <label for="Category">Category</label>
+    <input name="category" id="category" value="{{ request.form['category'] }}" required>
     <label for="location">Location</label>
     <input name="location" id="location" value="{{ request.form['location'] }}" required>
     <label for="email">Contact Email</label>
