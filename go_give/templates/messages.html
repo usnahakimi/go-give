@@ -9,14 +9,14 @@
 {% block content %}
 
 <div class="table-responsive">
-    <table class="table table-sm table-borderless mb-0">
+    <table class="table table-sm table-borderless mb-3">
         <thead class="thead-dark">
             <tr>
-                <th>Id</th>
                 <th>Message</th>
                 <th>Email</th>
             </tr>
         </thead>
+        <hr>
         <tbody>
             {% for message, from_email in messages %}
             <tr>

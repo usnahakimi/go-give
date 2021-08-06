@@ -9,6 +9,9 @@
     <h4 class="text-center">Welcome, {{ current_user.username }}!</h4>
   {% endif %}
   <br/>
+  <hr>
+  <h3 class="text-center">Browse through the most recently listed item</h3>
+  <hr>
   {% for listings in listings%}
     <div class="card mb-3" id="card">
         <div class="card-body">
@@ -40,5 +43,6 @@
           </div>
         </div>
     </div>
+    <hr>
   {% endfor %}
 {% endblock %}
